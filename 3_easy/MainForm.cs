@@ -24,7 +24,6 @@ namespace _3_easy
             {
                 temp = (byte)tb_input.Text[i];  
 
-                
                 if ((int)temp + 3 > 255)
                 {
                     temp = (byte)((int)temp - 252);
@@ -45,7 +44,6 @@ namespace _3_easy
             for (int i = 0; i < tb_input.Text.Length; i++)
             {
                 temp = (byte)tb_input.Text[i];
-
 
                 if ((int)temp - 3 < 0)
                 {
