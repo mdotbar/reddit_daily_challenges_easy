@@ -15,27 +15,25 @@ namespace _3_easy
             InitializeComponent();
         }
 
-        string caracteres = "abcdefghijklmnopqrstuvwxyz0123456789 ";
+        byte temp;
         string output = "";
 
         private void btn_encrypt_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < tb_input.Text.Length; i++)
             {
-                for (int j = 0; j < caracteres.Length; j++)
+                temp = (byte)tb_input.Text[i];  
+
+                
+                if ((int)temp + 3 > 255)
                 {
-                    if (tb_input.Text[i] == caracteres[j])
-                    {
-                        if (j + 3 > 37)
-                        {
-                            output += caracteres[(j + 3) - 37];
-                        }
-                        else
-                        {
-                            output += caracteres[j + 3];
-                        }
-                    }
+                    temp = (byte)((int)temp - 252);
                 }
+                else
+                {
+                    temp = (byte)((int)temp + 3);
+                }
+                output += (char)temp;
             }
 
             tb_output.Text = output;
@@ -46,20 +44,18 @@ namespace _3_easy
         {
             for (int i = 0; i < tb_input.Text.Length; i++)
             {
-                for (int j = 0; j < caracteres.Length; j++)
+                temp = (byte)tb_input.Text[i];
+
+
+                if ((int)temp - 3 < 0)
                 {
-                    if (tb_input.Text[i] == caracteres[j])
-                    {
-                        if (j - 3 < 0)
-                        {
-                            output += caracteres[(j - 3) + 37];
-                        }
-                        else
-                        {
-                            output += caracteres[j - 3];
-                        }
-                    }
+                    temp = (byte)((int)temp + 252);
                 }
+                else
+                {
+                    temp = (byte)((int)temp - 3);
+                }
+                output += (char)temp;
             }
 
             tb_output.Text = output;
